@@ -1,16 +1,26 @@
-.PHONY: sass serve fmt install deploy
+.PHONY: sass serve fmt install compress deploy
 
 serve:
-	python3 -m http.server
+	cp index.html public/
+	python3 -m http.server -d public
 
-sass:
-	sass --watch ./scss/custom.scss ./css/custom.css
+scss:
+	sass  ./scss/custom.scss ./public/css/custom.css
+
+watch:
+	sass --watch ./scss/custom.scss ./public/css/custom.css
 
 fmt:
-	dprint fmt index.html scss/custom.scss
+	dprint fmt public/index.html public/scss/custom.scss
 
 install:
 	pnpm install
 
-deploy:
-	openrsync -av index.html css ${SRV}:/var/www/htdocs/css.ijanc.org/
+compress:
+	find public/ -type f \
+                \( -name *.html -o -name *.css -o -name *.js -o -name *.txt -o -name *.svg \) \
+                -exec gzip -kf {} \;
+
+deploy: compress
+	cp index.html public/
+	openrsync -av public/ ${SRV}:/var/www/htdocs/css.ijanc.org/
