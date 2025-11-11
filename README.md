@@ -37,4 +37,4 @@ make serve
 
 ## License
 
-Licensed under either of ISC license ([LICENSE](LICENSE) or https://opensource.org/licenses/ISC)
+Licensed under of ISC license ([LICENSE](LICENSE) or https://opensource.org/licenses/ISC)
