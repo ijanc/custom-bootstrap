@@ -11862,6 +11862,7 @@ textarea.form-control-lg {
 .container {
   border: 1px #000 solid;
   box-shadow: 4px 4px #000;
+  padding: 0.5rem 1rem;
 }
 
 .navbar-nav .nav-link {
